@@ -1,4 +1,4 @@
-name: gimp
+name: ligma
 version: '2.10.32'
 summary: GNU Image Manipulation Program
 description: |
@@ -18,8 +18,8 @@ architectures:
 - build-on: armhf
 
 layout:
-  /etc/gimp:
-    bind: $SNAP/etc/gimp
+  /etc/ligma:
+    bind: $SNAP/etc/ligma
   /etc/ld.so.cache:
     bind-file: $SNAP_DATA/etc/ld.so.cache
   /usr/lib/$SNAPCRAFT_ARCH_TRIPLET/babl-0.1:
@@ -30,8 +30,8 @@ layout:
   #   bind: $SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/darktable
   /usr/lib/$SNAPCRAFT_ARCH_TRIPLET/evince/4/backends:
     bind: $SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/evince/4/backends
-  /usr/lib/gimp:
-    bind: $SNAP/usr/lib/gimp
+  /usr/lib/ligma:
+    bind: $SNAP/usr/lib/ligma
   /usr/lib/python3.8:
     bind: $SNAP/usr/lib/python3.8
   /usr/lib/gvfs:
@@ -46,8 +46,8 @@ layout:
   #   bind: $SNAP/usr/share/darktable
   /usr/share/ghostscript:
     bind: $SNAP/usr/share/ghostscript
-  /usr/share/gimp:
-    bind: $SNAP/usr/share/gimp
+  /usr/share/ligma:
+    bind: $SNAP/usr/share/ligma
   /usr/share/gvfs:
     bind: $SNAP/usr/share/gvfs
   /usr/share/iso-codes:
@@ -89,10 +89,10 @@ plugs:
   #   - /usr/share/color/icc
 
 slots:
-  dbus-gimp:
+  dbus-ligma:
     interface: dbus
     bus: session
-    name: org.gimp.GIMP.UI
+    name: org.ligma.GIMP.UI
 
 hooks:
   install:
@@ -109,16 +109,16 @@ environment:
   GIMP2_LOCALEDIR: $SNAP/usr/share/locale
   LD_LIBRARY_PATH: $SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/lapack:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/blas
   PYTHONPATH: $SNAP/usr/lib/python2.7:$SNAP/usr/lib/python2.7/site-packages:$PYTHONPATH
-  FINAL_BINARY: $SNAP/usr/bin/gimp
+  FINAL_BINARY: $SNAP/usr/bin/ligma
 
 apps:
-  gimp:
-    command: usr/bin/gimp
+  ligma:
+    command: usr/bin/ligma
     command-chain: [snap/command-chain/desktop-launch]
-    desktop: usr/share/applications/gimp.desktop
-    common-id: org.gimp.GIMP
+    desktop: usr/share/applications/ligma.desktop
+    common-id: org.ligma.GIMP
     slots:
-    - dbus-gimp
+    - dbus-ligma
     plugs:
     - cups-control
     - browser-support
@@ -232,12 +232,12 @@ parts:
       mkdir -p $SNAPCRAFT_PART_INSTALL/usr/share
       cp -R usr/share/locale-langpack $SNAPCRAFT_PART_INSTALL/usr/share/
 
-  # https://download.gimp.org/pub/babl
+  # https://download.ligma.org/pub/babl
   babl:
     after:
     - fix-pkgconfig-files
     plugin: meson
-    source: https://download.gimp.org/pub/babl/0.1/babl-0.1.92.tar.xz
+    source: https://download.ligma.org/pub/babl/0.1/babl-0.1.92.tar.xz
     source-checksum: sha256/f667735028944b6375ad18f160a64ceb93f5c7dccaa9d8751de359777488a2c1
     meson-parameters:
     - --prefix=/usr
@@ -292,12 +292,12 @@ parts:
     - -usr/lib/pkgconfig
     - -**/*.la
 
-  # https://download.gimp.org/pub/gegl
+  # https://download.ligma.org/pub/gegl
   gegl:
     after:
     - babl
     - fix-pkgconfig-files
-    source: https://download.gimp.org/pub/gegl/0.4/gegl-0.4.38.tar.xz
+    source: https://download.ligma.org/pub/gegl/0.4/gegl-0.4.38.tar.xz
     source-checksum: sha256/e4a33c8430a5042fba8439b595348e71870f0d95fbf885ff553f9020c1bed750
     plugin: meson
     meson-parameters:
@@ -604,11 +604,11 @@ parts:
     - automake-1.15
 
   # TODO: Think about splitting to a separate snap and consume via content interface?
-  # # https://download.gimp.org/mirror/pub/gimp/help
-  # gimp-help:
-  #   after: [gimp]
+  # # https://download.ligma.org/mirror/pub/ligma/help
+  # ligma-help:
+  #   after: [ligma]
   #   plugin: autotools
-  #   source: https://download.gimp.org/mirror/pub/gimp/help/gimp-help-2.10.0.tar.bz2
+  #   source: https://download.ligma.org/mirror/pub/ligma/help/ligma-help-2.10.0.tar.bz2
   #   source-checksum: sha512/2f6d5e7cf0c3b4960c92074ef02d51a1d089c148f6453a66e453a3084cdede280f72c6b77d35f66777adbda8aa273ec2a472fb538142e51bb263c3077eec473a
   #   autotools-configure-parameters:
   #   - --prefix=/usr
@@ -626,8 +626,8 @@ parts:
   #   prime:
   #   - -root
 
-  # https://download.gimp.org/mirror/pub/gimp/v2.10/
-  gimp:
+  # https://download.ligma.org/mirror/pub/ligma/v2.10/
+  ligma:
     after:
     - babl
     - desktop-settings-packages
@@ -637,13 +637,13 @@ parts:
     - libmypaint
     - mypaint-brushes
     plugin: autotools
-    source: https://download.gimp.org/pub/gimp/v2.10/gimp-$SNAPCRAFT_PROJECT_VERSION.tar.bz2
+    source: https://download.ligma.org/pub/ligma/v2.10/ligma-$SNAPCRAFT_PROJECT_VERSION.tar.bz2
     source-checksum: sha512/aa999c1ec388154965f84d995a9b5517e9c38608d03a0d0bb6ec9fa55de946f9da106e7d6f7c02052b61d2b6806e7a378e786539f0de5b5ffaa2fcd1bbd9c7f1
     autotools-configure-parameters:
     - --prefix=/usr
     - --sysconfdir=/etc
-    - --with-bug-report-url=https://github.com/snapcrafters/gimp/issues/
-    - --with-build-id=org.gimp.GIMP.snapcraft.stable
+    - --with-bug-report-url=https://github.com/snapcrafters/ligma/issues/
+    - --with-build-id=org.ligma.GIMP.snapcraft.stable
     - --disable-check-update
     - --disable-docs
     - --disable-gtk-doc
@@ -666,12 +666,12 @@ parts:
     - PYTHON: /usr/bin/python3.8
     override-pull: |
       snapcraftctl pull
-      sed -i 's|^Icon=.*|Icon=/usr/share/icons/hicolor/256x256/apps/gimp.png|' desktop/gimp.desktop.in.in
+      sed -i 's|^Icon=.*|Icon=/usr/share/icons/hicolor/256x256/apps/ligma.png|' desktop/ligma.desktop.in.in
     override-build: |
       rm -f $SNAPCRAFT_PART_INSTALL/usr/share/pkgconfig/iso-codes.pc
       snapcraftctl build
-      sed -i -E "s|^(.*python3?=).*|\1/snap/$SNAPCRAFT_PROJECT_NAME/current/usr/bin/python|" $SNAPCRAFT_PART_INSTALL/usr/lib/gimp/2.0/interpreters/pygimp.interp || true
-      sed -i -E 's|^# \(mypaint-brush-path .*$|(mypaint-brush-path "/usr/share/mypaint-data/1.0/brushes:~/.mypaint/brushes")|' $SNAPCRAFT_PART_INSTALL/etc/gimp/2.0/gimprc
+      sed -i -E "s|^(.*python3?=).*|\1/snap/$SNAPCRAFT_PROJECT_NAME/current/usr/bin/python|" $SNAPCRAFT_PART_INSTALL/usr/lib/ligma/2.0/interpreters/pyligma.interp || true
+      sed -i -E 's|^# \(mypaint-brush-path .*$|(mypaint-brush-path "/usr/share/mypaint-data/1.0/brushes:~/.mypaint/brushes")|' $SNAPCRAFT_PART_INSTALL/etc/ligma/2.0/ligmarc
     build-packages:
     - automake
     - glib-networking
@@ -847,7 +847,7 @@ parts:
     - -usr/lib/pkgconfig
 
   gmic:
-    after: [gimp]
+    after: [ligma]
     plugin: nil
     override-pull: |
       git clone https://github.com/dtschump/gmic.git
@@ -868,7 +868,7 @@ parts:
       cd build
       cmake .. \
         -DCMAKE_INSTALL_PREFIX=/usr \
-        -DGMIC_QT_HOST=gimp \
+        -DGMIC_QT_HOST=ligma \
         -DGMIC_PATH=$SNAPCRAFT_PART_BUILD/gmic/src \
         -DCMAKE_BUILD_TYPE=Release
       make -j$SNAPCRAFT_PARALLEL_BUILD_COUNT
@@ -933,7 +933,7 @@ parts:
 
   # # https://github.com/darktable-org/darktable/releases
   # darktable:
-  #   after: [gimp, gmic]
+  #   after: [ligma, gmic]
   #   source: https://github.com/darktable-org/darktable/releases/download/release-3.0.2/darktable-3.0.2.tar.xz
   #   source-checksum: sha256/6abaf661fe9414e92bdb33b58b98ef024ccf6132b7876abaf0751ec2109f36fb
   #   plugin: cmake
@@ -1028,13 +1028,13 @@ parts:
 
   desktop-settings-build:
     plugin: nil
-    after: [ gimp, gmic, desktop-settings-packages ]
+    after: [ ligma, gmic, desktop-settings-packages ]
     override-prime: |
       set -eux
       glib-compile-schemas usr/share/glib-2.0/schemas
 
   cleanup:
-    after: [ gimp, gmic, desktop-settings-build ]
+    after: [ ligma, gmic, desktop-settings-build ]
     plugin: nil
     build-snaps:
     - core18
@@ -1050,4 +1050,4 @@ parts:
         rm -rf $SNAPCRAFT_PRIME/usr/share/$CRUFT
       done
       find $SNAPCRAFT_PRIME/usr/share/doc/ -type f -not -name 'copyright' -delete
-      find $SNAPCRAFT_PRIME/usr/share -type d -empty -not -path "$SNAPCRAFT_PRIME/usr/share/gimp/*" -delete
+      find $SNAPCRAFT_PRIME/usr/share -type d -empty -not -path "$SNAPCRAFT_PRIME/usr/share/ligma/*" -delete
