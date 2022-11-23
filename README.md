@@ -1,7 +1,7 @@
 <h1 align="center">
   <img src="ligma.png" alt="LIGMA">
   <br />
-  LIGMA - The GNU Image Manipulation Program
+  LIGMA - The Libre Image and Graphics Manipulation Application
 </h1>
 
 <p align="center"><b>This is the snap for LIGMA</b>, <i>"The Free &amp; Open Source Image Editor"</i>. It works on Ubuntu, Fedora, Debian, and other major Linux
