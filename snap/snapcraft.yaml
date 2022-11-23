@@ -3,8 +3,8 @@ version: '2.10.32'
 summary: GNU Image Manipulation Program
 description: |
   Whether you are a graphic designer, photographer, illustrator, or scientist,
-  GIMP provides you with sophisticated tools to get your job done. You can
-  further enhance your productivity with GIMP thanks to many customization
+  LIGMA provides you with sophisticated tools to get your job done. You can
+  further enhance your productivity with LIGMA thanks to many customization
   options and 3rd party plugins.
 
 grade: stable
@@ -92,7 +92,7 @@ slots:
   dbus-ligma:
     interface: dbus
     bus: session
-    name: org.ligma.GIMP.UI
+    name: org.ligma.LIGMA.UI
 
 hooks:
   install:
@@ -106,7 +106,7 @@ environment:
   SNAP_DESKTOP_RUNTIME: $SNAP/data-dir/gnome-platform
   GTK_EXE_PREFIX: $SNAP/usr
   GTK_USE_PORTAL: '1'
-  GIMP2_LOCALEDIR: $SNAP/usr/share/locale
+  LIGMA2_LOCALEDIR: $SNAP/usr/share/locale
   LD_LIBRARY_PATH: $SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/lapack:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/blas
   PYTHONPATH: $SNAP/usr/lib/python2.7:$SNAP/usr/lib/python2.7/site-packages:$PYTHONPATH
   FINAL_BINARY: $SNAP/usr/bin/ligma
@@ -116,7 +116,7 @@ apps:
     command: usr/bin/ligma
     command-chain: [snap/command-chain/desktop-launch]
     desktop: usr/share/applications/ligma.desktop
-    common-id: org.ligma.GIMP
+    common-id: org.ligma.LIGMA
     slots:
     - dbus-ligma
     plugs:
@@ -643,7 +643,7 @@ parts:
     - --prefix=/usr
     - --sysconfdir=/etc
     - --with-bug-report-url=https://github.com/snapcrafters/ligma/issues/
-    - --with-build-id=org.ligma.GIMP.snapcraft.stable
+    - --with-build-id=org.ligma.LIGMA.snapcraft.stable
     - --disable-check-update
     - --disable-docs
     - --disable-gtk-doc
